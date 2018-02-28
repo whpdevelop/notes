@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body class="box">
+    <script>
+        function Sizzle(selector) {
+            return document.querySelectorAll(selector);
+        }
+        function Init(selector) {
+            this.ele = Sizzle(selector);
+        }
+        Init.prototype = {
+            constructor: Init,
+            html: function () {
+                console.log('html')
+            },
+            css: function () {
+                console.log('css')
+            }
+        }
+        function $(selector) {
+            return new Init(selector);
+
+        }
+        // $('body').html()
+
+
+
+        var $1 = $('body');
+        var $2 = $('body');
+        console.log($1);
+        console.log($1.html == $2.html);
+
+
+
+    </script>
+</body>
+
+</html>

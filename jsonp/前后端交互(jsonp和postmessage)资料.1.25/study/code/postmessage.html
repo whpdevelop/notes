@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #ctn {
+            width: 300px;
+            height: 100px;
+            border: 1px solid #ccc;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+        }
+
+        iframe {
+            width: 350px;
+            height: 400px;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>h5 postMessage</h1>
+    <textarea name="" id="" cols="30" rows="5"></textarea>
+    <br>
+    <input type="button" value="send A">
+    <input type="button" value="send B">
+    <br>
+    <div id="ctn"></div>
+    <ul>
+        <li>
+            <iframe src="http://item.com/data/a.html" frameborder="1"></iframe>
+        </li>
+        <li>
+            <iframe src="http://item.com/data/b.html" frameborder="1"></iframe>
+        </li>
+    </ul>
+
+    <script>
+        var val = document.querySelector('textarea');
+        var btn1 = document.querySelectorAll('input')[0];
+        var btn2 = document.querySelectorAll('input')[1];
+        var iframeA = document.querySelectorAll('iframe')[0];
+        var iframeB = document.querySelectorAll('iframe')[1];
+        var ctn = document.querySelector("#ctn");
+
+        btn1.addEventListener('click', function () {
+            console.dir(iframeA.contentWindow)
+            var value = val.value;
+            iframeA.contentWindow.postMessage(value, 'http://item.com/data/a.html')
+        })
+
+
+        window.addEventListener('message', function (e) {
+            ctn.innerHTML += e.data;
+        })
+
+
+
+    </script>
+</body>
+
+</html>

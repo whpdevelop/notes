@@ -1,0 +1,209 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>QQ帐号安全登录</title>
+    <style type="text/css">
+        html,
+        body,
+        div,
+        p,
+        form,
+        label,
+        ul,
+        li,
+        img,
+        em,
+        h3 {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            list-style: none;
+            font-style: normal;
+            font-weight: normal;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            font-family: Microsoft YaHei, Verdana, Arial, SimSun;
+            color: #666;
+            font-size: 14px;
+            background: #fff;
+            overflow: hidden
+        }
+
+        .block,
+        #block {
+            display: block;
+        }
+
+        .none,
+        #none {
+            display: none;
+        }
+
+        .login {
+            width: 100%;
+        }
+
+        .login .headerTop {
+            width: 100%;
+            height: 80px;
+            background: #52b7ed;
+        }
+
+        .login .headerTop .logo {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .login .headerTop .logo img {
+            margin-top: 20px;
+            width: 150px;
+        }
+
+        .main {
+            width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+            height: auto;
+            clear: both;
+        }
+
+        .main .mainLeft {
+            float: left;
+            width: 50%;
+            border-right: 1px dotted #ccc;
+            margin-top: 30px;
+            padding-bottom: 100px;
+        }
+
+        .main .mainLeft h3 {
+            width: 70%;
+            border-bottom: 2px solid #ccc;
+            padding: 0 10%;
+            font-family: 600;
+        }
+
+        .main .mainLeft h3 span {
+            display: inline-block;
+            width: 6.5em;
+            font-size: 18px;
+            color: #333;
+            line-height: 50px;
+            border-bottom: 4px solid #666;
+            margin-bottom: -2px;
+            font-family: 600;
+            text-align: center;
+        }
+
+        .main .mainLeft input {
+            width: 50%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin: 20px 0 0 50px;
+        }
+
+        .main .mainLeft input[type="text"] {
+            margin-top: 60px;
+        }
+
+        .main .mainLeft .a {
+            display: block;
+            padding: 10px 15px;
+            width: 20%;
+            text-align: center;
+            font-size: 18px;
+            color: #fff;
+            background: #88ce2f;
+            border-radius: 3px;
+            margin: 20px 0 0 50px;
+        }
+
+        .main .mainLeft input[type="checkbox"] {
+            width: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin: 20px 0 0 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login">
+        <div class="headerTop">
+            <div class="logo">
+                <img src="http://www.17sucai.com/preview/266121/2016-05-12/QQlogin/images/logo.png" />
+            </div>
+        </div>
+        <div class="main">
+            <div class="mainLeft">
+                <h3>
+                    <span>账号密码登录</span>
+                </h3>
+                <form>
+                    <input id="name" class="text" type="text" placeholder="支持QQ号/邮箱/手机号登录" required value="">
+                    <a class="delete" id="delete" href="#"></a>
+                    <input id="ps" type="password" name="" placeholder="密码">
+                    <br>
+                    <input type="checkbox">记住密码
+                </form>
+                <button class="a" id="btn">登录</button>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="./jquery.cookie.js"></script>
+    <script>
+        $(function () {
+            $("#btn").on("click", function () {
+                if ($("input[type='checkbox']").prop("checked")) {
+                    var name = $("#name").val();
+                    var ps = $("#ps").val();
+                    $.cookie("set", {
+                        duration: 365,
+                        name: 'name',
+                        value: name
+                    });
+                    $.cookie("set", {
+                        duration: 365,
+                        name: 'ps',
+                        value: ps
+                    });
+                } else {
+                    $.cookie("delete", {
+                        name: 'name'
+                    });
+                    $.cookie("delete", {
+                        name: 'ps'
+                    });
+                }
+            })
+
+            $("#name").val($.cookie("exist", {
+                name: 'name'
+            }) ? $.cookie("get", {
+                name: 'name'
+            }) : '');
+            $("#ps").val($.cookie("exist", {
+                name: 'ps'
+            }) ? $.cookie("get", {
+                name: 'ps'
+            }) : '');
+
+
+        })
+    </script>
+</body>
+
+</html>

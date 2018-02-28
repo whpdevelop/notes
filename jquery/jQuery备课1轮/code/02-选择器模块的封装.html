@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body class="box">
+    <script>
+
+
+        function Sizzle(selector) {
+            return document.querySelectorAll(selector);
+        }
+
+        function $(selector) {
+            var dom = Sizzle(selector);
+            dom.html = function () {
+                console.log('html')
+            }
+            dom.css = function () {
+                console.log('css')
+            }
+            return dom;
+        }
+
+        // console.log(Sizzle('body'))
+
+        // console.log(Sizzle('body'))
+        $('body').html()
+
+        var $1 = $('body');
+        var $2 = $('body');
+        console.log($1.html == $2.html);
+
+        // 共享 -> 原型
+        /* 
+            实例对象 原型对象 构造函数
+            1 所有的函数中都有一个prototype属性
+            2 prototype属性为对象类型,在该对象上有一个constructor属性,指向该原型所属的构造函数
+            3 实例对象有一个__proto__属性(非标准属性,编程过程中不要使用) 该属性指向创建该实例的构造函数的原型
+        
+        */
+
+        // $('body').html()
+    </script>
+</body>
+
+</html>
