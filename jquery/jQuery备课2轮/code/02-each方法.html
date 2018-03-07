@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>each方法</title>
+</head>
+
+<body>
+    <script src="./libs/jquery-myself.js"></script>
+    <!-- <script src="./libs/jquery.js"></script> -->
+    <script>
+
+        // 演示
+        var arr = [11, 55, 33, 22, 55];
+        // var arr = document.querySelectorAll("*");
+        $.each(arr, function (i, v) {
+            console.log(this);
+            if (v == 55) {
+                return false;
+            }
+        })
+
+    </script>
+</body>
+
+</html>
