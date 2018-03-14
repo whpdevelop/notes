@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ajax 轮询聊天</h1>
+    <textarea></textarea>
+    <button>发送</button>
+    <ul>
+
+    </ul>
+    <script>
+      var btn = document.querySelector('button');
+      var ctn = document.querySelector('textarea');
+      var ul = document.querySelector('ul');
+      // 与服务器建立连接
+      var ws = new WebSocket('ws:127.0.0.1:8080');
+        // ws 实例对象有与服务器连接成功的事件
+        ws.onopen = function(){
+            // 给服务器发送消息
+            // 只有我们与服务器连接成功之后才可以发送消息给服务器
+            btn.onclick = function(){
+                // 发送消息
+                ws.send(ctn.value);
+            }
+        }
+        // 当服务器 每次给我们发送数据的时候回调用 onmessage 事件
+        ws.onmessage = function(e){
+            // e.data 是服务器发送给我们的消息
+            console.log(e.data);
+        }
+
+
+    
+    </script>
+</body>
+</html>

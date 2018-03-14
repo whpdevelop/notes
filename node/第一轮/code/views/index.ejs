@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      table {
+          width: 800px;
+          border:1px solid #000;
+          border-collapse:collapse;
+      }
+      th,td,tr {
+        border:1px solid #000;
+          
+      }
+      th,td {
+          height: 30px;
+      }
+      tr {
+          text-align: center;
+      }
+    
+    </style>
+</head>
+<body>
+    <h1>mongoDB数据库</h1>
+    <a href="/add">添加</a>
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>22</td>
+            <td>
+                <a href="#">查看</a>
+                <a href="#">编辑</a>
+                <a href="#">删除</a>
+            </td>
+        </tr>
+        <tr>
+            <td>李四</td>
+            <td>21</td>
+            <td>
+                <a href="#">查看</a>
+                <a href="#">编辑</a>
+                <a href="#">删除</a>
+            </td>
+        </tr>
+        <tr>
+            <td>王五</td>
+            <td>18</td>
+            <td>
+                <a href="#">查看</a>
+                <a href="#">编辑</a>
+                <a href="#">删除</a>
+            </td>
+        </tr>
+        <% stus.forEach(function(v,i){%>
+             <tr>
+                <td><%= v.name%></td>
+                <td><%= v.age%></td>
+                <td>
+                    <a href="#">查看</a>
+                    <a href="#">编辑</a>
+                    <a href="#">删除</a>
+                </td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>

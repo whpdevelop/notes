@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ajax 轮询聊天</h1>
+    <textarea></textarea>
+    <button>发送</button>
+    <ul>
+
+    </ul>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var btn = document.querySelector('button');
+      var ctn = document.querySelector('textarea');
+      var ul = document.querySelector('ul');
+      var socket = io();
+
+      btn.onclick = function(){
+          socket.emit('send',ctn.value);
+      }
+      socket.on('return',(data)=>{
+          console.log(data);
+      })
+     
+    
+    </script>
+</body>
+</html>

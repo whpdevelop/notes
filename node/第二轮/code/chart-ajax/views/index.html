@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ajax 轮询聊天</h1>
+    <textarea></textarea>
+    <button>发送</button>
+    <ul>
+
+    </ul>
+    <script>
+      var btn = document.querySelector('button');
+      var ctn = document.querySelector('textarea');
+      var ul = document.querySelector('ul');
+
+      btn.onclick = function(){
+          var xhr = new XMLHttpRequest();
+          xhr.open('post','/senddata');
+          var data = {msg:ctn.value};
+          xhr.setRequestHeader('Content-Type','application/json');
+          xhr.send(JSON.stringify(data));
+          xhr.onreadystatechange = function(){
+              if(xhr.readyState == 4){
+                  if(xhr.status ==200){
+                      console.log(xhr.responseText);
+                  }
+              }
+          }
+      }
+      getData();
+    function getData(){
+        var xhr = new XMLHttpRequest();
+          xhr.open('get','/getdata');
+          xhr.onreadystatechange = function(){
+              if(xhr.readyState == 4){
+                  if(xhr.status ==200){
+                      ul.innerHTML = '';
+                    //   console.log(xhr.responseText);
+                      var data = JSON.parse(xhr.responseText);
+                      data.forEach((v)=>{
+                          var li = document.createElement('li');
+                          li.innerHTML = v.msg;
+                          ul.appendChild(li);
+                      })
+                      setTimeout(function(){
+                        getData();
+                      },100)
+                  }
+              }
+          }
+          xhr.send();
+    }
+    
+    </script>
+</body>
+</html>
